@@ -2,8 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Light mode */
+:root {
+  --background: #ffffff;
+  --text-color: #111827;
+}
+
+/* Dark mode */
+[data-theme="dark"] {
+  --background: #111827;
+  --text-color: #ffffff;
+}
+
+/* Apply global styles */
 body {
-  color: var(--foreground);
+  color: var(--text-color);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  transition: all 0.3s ease;
 }

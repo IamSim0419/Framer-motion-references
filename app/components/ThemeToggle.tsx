@@ -46,13 +46,13 @@ export default function ThemeToggle() {
     const { isDarkMode, toggleTheme } = useTheme();
 
 return (
-    <div className="p-8">
+    <div className="p-4">
         <motion.button
             onClick={toggleTheme}
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
             whileTap={{ scale: 0.9 }}            
-            className={twMerge("w-16 h-8 flex items-center px-1 rounded-full", isDarkMode ? "bg-gray-800" : "bg-gray-200")}
+            className={twMerge("w-16 h-8 flex items-center px-1 rounded-full", isDarkMode ? "bg-gray-600" : "bg-gray-200")}
 
     >
             <motion.div

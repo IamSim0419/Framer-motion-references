@@ -62,9 +62,10 @@ export function BoxShadowEffect() {
                 onMouseMove={handleMoveMouse}
             >
                 <motion.div 
-                    className="w-40 h-40 bg-pink-600 rounded-lg cursor-grab"
+                    className="w-40 h-40 bg-pink-600 rounded-lg"
                     drag // Enable drag gesture
                     dragConstraints={constraintsRef} // Set drag constraints
+                    dragSnapToOrigin
                     style={{ boxShadow }} // Apply dynamic box shadow effect
                 ></motion.div>
             </div>

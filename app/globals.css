@@ -20,3 +20,21 @@ body {
   background: var(--background);
   transition: all 0.3s ease;
 }
+
+.text-wrapper {
+  @apply m-0 text-transparent bg-repeat-x font-bold font-sans text-[100px] uppercase;
+  background-image: url('/framer-gradient.jpg');
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: animate 15s linear infinite;
+  -webkit-text-stroke: 2px #000;
+}
+
+@keyframes animate {
+  0% {
+    background-position: left 0 bottom 5px;
+  }
+  100% {
+    background-position: left 1000px bottom 20px;
+  }
+}

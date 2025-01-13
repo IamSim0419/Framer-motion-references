@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { twMerge } from "tailwind-merge";
 
@@ -11,10 +11,10 @@ type ThemeContextType =  {
     toggleTheme: () => void;
 }
 
-// Create context
+//* Create context
 const ThemeContext = createContext<ThemeContextType | null>(null);
 
-// Custom hook
+//! Custom hook
 export function useTheme() {
     const context = useContext(ThemeContext);
 
@@ -25,8 +25,10 @@ export function useTheme() {
     return context;
 }
 
-// Provider component
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
+//* Provider component
+import { ReactNode } from "react";
+
+export function ThemeProvider({ children }: { children: ReactNode }) {
     const [isDarkMode, setIsDarkMode] = useState(false);
 
     // Toggle between dark and light mode
@@ -41,9 +43,17 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     );
 }
 
-//* ThemeProvider component
+//* Toggle component
 export default function ThemeToggle() {
     const { isDarkMode, toggleTheme } = useTheme();
+
+    // Update the data-theme attribute on the root element when the theme changes
+    useEffect(() => {
+        document.documentElement.setAttribute(
+          "data-theme",
+          isDarkMode ? "dark" : "light"
+        );
+    }, [isDarkMode]);
 
 return (
     <div className="p-4">
@@ -52,20 +62,16 @@ return (
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
             whileTap={{ scale: 0.9 }}            
-            className={twMerge("w-16 h-8 flex items-center px-1 rounded-full", isDarkMode ? "bg-gray-600" : "bg-gray-200")}
+            className={twMerge("w-16 h-8 flex items-center px-1 rounded-full", isDarkMode ? "bg-gray-600 justify-end" : "bg-gray-200 justify-start")}
 
     >
             <motion.div
                     className="w-6 h-6 rounded-full bg-slate-100 shadow-md flex items-center justify-center"
                     layout
                     transition={{ type: "spring", stiffness: 500, damping: 30}}
-                    style={{ x: isDarkMode ? 32 : 1 }} // Toggle left and right
             >
                     {isDarkMode ? (
                             <motion.div
-                                    key="moon"
-                                    // initial={{ rotate: 0 }}
-                                    // animate={{ rotate: 360 }}
                                     transition={{ duration: 0.5 }}
                             >
                                     <FaMoon className="text-slate-900/80" />
@@ -73,8 +79,6 @@ return (
                     ) : (
                             <motion.div
                                     key="sun"
-                                    // initial={{ rotate: 0 }}
-                                    // animate={{ rotate: 360 }}
                                     transition={{ duration: 0.5 }}
                             >
                                     <FaSun className="text-yellow-500" />

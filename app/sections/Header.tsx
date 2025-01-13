@@ -50,14 +50,6 @@ const navLinks: navLinkType[] = [
 
 export default function Header() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const { isDarkMode } = useTheme();
-
-  useEffect(() => {
-    document.documentElement.setAttribute(
-      "data-theme",
-      isDarkMode ? "dark" : "light"
-    );
-  }, [isDarkMode]);
 
   return (
     <header>
@@ -97,8 +89,6 @@ export default function Header() {
                 <ThemeToggle />
               </div>
             </div>
-
-            
           </nav>
         </div>
       </div>

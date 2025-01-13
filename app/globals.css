@@ -3,38 +3,13 @@
 @tailwind utilities;
 
 /* Light mode */
-:root {
-  --background: #ffffff;
-  --text-color: #111827;
+body {
+  color: #000;
+  background-color: #fff;
 }
 
 /* Dark mode */
-[data-theme="dark"] {
-  --background: #111827;
-  --text-color: #ffffff;
-}
-
-/* Apply global styles */
-body {
-  color: var(--text-color);
-  background: var(--background);
-  transition: all 0.3s ease;
-}
-
-.text-wrapper {
-  @apply m-0 text-transparent bg-repeat-x font-bold font-sans text-[100px] uppercase;
-  background-image: url('/framer-gradient.jpg');
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: animate 15s linear infinite;
-  -webkit-text-stroke: 2px #000;
-}
-
-@keyframes animate {
-  0% {
-    background-position: left 0 bottom 5px;
-  }
-  100% {
-    background-position: left 1000px bottom 20px;
-  }
+[data-theme="dark"] body {
+  background-color: #000;
+  color: #fff;
 }
